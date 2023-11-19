@@ -1,0 +1,60 @@
+[
+    {
+      "Restaurant_name": "Buffet Lounge",
+      "venue_cost": "10000",
+     "picture":[
+      "https://i.ibb.co/FzrqCmm/Buffet-Lucnh.jpg",
+      "https://i.ibb.co/RCPdVrM/Buffet-Lounge.jpg",
+      "https://i.ibb.co/RCPdVrM/Buffet-Lounge.jpg"
+     ],
+     "Rating": 4,
+     "location":{
+      "district":"Khulna",
+      "address":"araihazari"
+     },
+      "Food1_Price": "550",
+      "Food2_Price": "650",
+      "slots": [
+        "1.00 PM - 4.00 PM",
+        "7.00 PM - 10.00 PM"
+      ]
+    },
+    {
+      "Restaurant_name": "Buffet Mania",
+      "venue_cost": "15000",
+     "picture":[
+       "https://i.ibb.co/h2HtNzR/buffet-Mania.jpg",
+      "https://i.ibb.co/tqnCxr5/Buffet-Mania-food.jpg",
+       "https://i.ibb.co/tqnCxr5/Buffet-Mania-food.jpg"
+     ],"Rating": 4.5,
+     "location":{
+      "district":"BrahmanBaria",
+      "address":"Kuti-chumohoni"
+     },
+      "Food1_Price": "549",
+      "Food2_Price": "599",
+      "slots": [
+        "1.00 PM - 4.00 PM",
+        "7.00 PM - 10.00 PM"
+      ]
+    },
+    {
+      "Restaurant_name": "Taste Blast",
+      "venue_cost": "12000",
+      "picture":[
+      "https://i.ibb.co/Ltkg5Y3/Taste-Blast.jpg",
+      "https://i.ibb.co/K0Z1ZXt/taste-blast-lunch.jpg",
+    "https://i.ibb.co/pymTgPW/taste-blast-food.jpg"
+      ],"Rating": 4.2,
+      "location":{
+        "district":"bogura",
+        "address":"shatmata road"
+      },
+      "Food1_Price": "549",
+      "Food2_Price": "599",
+      "slots": [
+        "1.00 PM - 4.00 PM",
+        "7.00 PM - 10.00 PM"
+      ]
+    }
+  ]
