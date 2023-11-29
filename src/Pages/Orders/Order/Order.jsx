@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { getOrder} from "../../../Service Operations/service";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import Sidebar from "../../../components/Dashboard/Sidebar";
+import { Link } from "react-router-dom";
 
 const Order = () => {
   const [component, setComponent] = useState([]);
@@ -14,7 +15,9 @@ const Order = () => {
       setComponent(data);
     });
   }, [user]);
-//  console.log(user?.email)
+  // const [price,_id,event,email,name,location] = component
+//  console.log(component)
+//  console.log(_id)
 //  console.log(user?.displayName)
   return (
    <div className="flex flex-row">
@@ -40,14 +43,30 @@ const Order = () => {
                 <p>{c.name}</p>
                 <p>{c.email}</p>
               </td>
-              <td>{c.price}</td>
+              <td>{c?.price}</td>
               <td className="flex flex-col">
                
-                <p> {c.location}</p>
-                <p> {c.contact}</p>
+                <p> {c?.location}</p>
+                <p> {c?.contact}</p>
               </td>
               <td className="text-center">
-                <button className="btn btn-primary mx-auto">Pay</button>
+                <button className="btn ">
+                {
+          c?.price && !c?.paid && <Link to={`/payment/${c?._id}`}>
+            <button
+              className='btn  btn-sm'
+            >Pay</button>
+          </Link>
+        }
+
+        {
+          c?.price && c?.paid && <span
+            className='text-green-600 text-xl'
+          >Paid</span>
+
+
+        }
+                </button>
               </td>
             </tr>
           ))}

@@ -14,16 +14,18 @@ export const Navbar = () => {
    
     const allLinks = [
         { url: '/', name: 'Home' },
-        { url: '/about', name: 'About' },
         {
             url: 'service', name: 'Services', sublink: [
                 { url: '/Venue', name: 'Venue' },
                 { url: '/Photographers', name: 'Photographers' },
+                { url: '/costume', name: 'Custume' },
+                { url: '/makeup', name: 'Mackup' },
             ]
         },
         { url: '/orders', name: 'Orders' },
         { url: '/contact', name: 'Contact' },
       isAdmin[0] && { url: '/dashboard', name: 'Dashboard' },
+      ! isAdmin[0] && { url: '/become-merchant', name: 'Add Product' },
     ]
 
 

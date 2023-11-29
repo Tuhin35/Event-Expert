@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getVenues } from "../../Service Operations/service";
 import { Link } from "react-router-dom";
+import AuthProvider from "../../Contexts/AuthProvider";
 
 const VenueService = () => {
   const [venue, setVenue] = useState([]);
+  const {user} = useContext(AuthProvider)
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,7 +21,7 @@ const VenueService = () => {
       {venue?.map((v, i) => (
         <div className="card w-96 bg-base-100 shadow-xl image-full">
           <figure>
-            <img className="w-96 h-64" src={v?.bgPicture} alt={v?.event} />
+            <img className="w-96 h-64" src={v?.bgPicture ? v?.bgPicture :v?.pictures?.[0] } alt={v?.event} />
           </figure>
           <div className="card-body text-center p-2">
             <p className="text-2xl font-bold">{v?.agency?.vanueName}</p>

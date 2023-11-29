@@ -26,6 +26,8 @@ import Order from "../Pages/Orders/Order/Order"
 import DashBoardAllUser from "../components/Dashboard/DashboardAllUser/DashBoardAllUser"
 import PhotographerDetails from "../Pages/Service Details/PhotographerDetails"
 import BusinessOwnerMenu from "../components/Dashboard/Menus/BusinessOwnerMenu"
+import Payment from "../Pages/Payment/Payment"
+import CheckoutForm from "../Pages/Payment/CheckoutForm"
 
 const router = createBrowserRouter([
     {
@@ -122,10 +124,25 @@ const router = createBrowserRouter([
                 path: '/contact',
                 element: <Contact />,
             },
+            // {
+            //     path:'/checkout/:id',
+            //     element:<PrivateRoute><CheckoutForm/> </PrivateRoute>,
+            //     // loader: ({params})=>fetch(`${process.env.REACT_APP_URL}/orders/${params.id}`)
+            //   },
             {
                 path: '/orders',
                 element:<PrivateRoute>  <Order/> </PrivateRoute>,
             },
+            {
+                path: "/payment/:id",
+                element: <Payment></Payment>,
+                // loader:({params}) => fetch(`${process.env.REACT_APP_API_URL}/orders/${params.id}`)
+            },
+            {
+                path: 'become-merchant',
+                element: <PrivateRoute><BecomeMerchant /></PrivateRoute>,
+
+            }
 
         ],
 
@@ -139,11 +156,7 @@ const router = createBrowserRouter([
                 element:<PrivateRoute><AllUsers/></PrivateRoute>,
 
             },
-            {
-                path: 'become-merchant',
-                element: <PrivateRoute><BecomeMerchant /></PrivateRoute>,
-
-            },
+            
             {
                 path: 'add-costumes',
                 element: <AddCostumes />,

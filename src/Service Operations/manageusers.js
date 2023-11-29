@@ -10,7 +10,7 @@ export const saveUser = async (userData) => {
         method: "PUT",
         headers: {
             'content-type': 'application/json',
-            authorization: `Bearer ${localStorage.getItem('EventHive-token')}`,
+            authorization: `bearer ${localStorage.getItem('Eventhive-token')}`,
         },
         body: JSON.stringify(userData),
     })
@@ -35,7 +35,7 @@ export const becomeMerchantRequest = async merchantData => {
         method: "PUT",
         headers: {
             'content-type': 'application/json',
-            authorization: `Bearer ${localStorage.getItem('EventHive-token')}`,
+            authorization: `bearer ${localStorage.getItem('Eventhive-token')}`,
         },
         body: JSON.stringify(merchantData),
     })
@@ -46,14 +46,14 @@ export const becomeMerchantRequest = async merchantData => {
 
 export const uploadEvent = async eventData => {
    
-    
+    console.log(eventData)
     const url = `${process.env.REACT_APP_API_URL}/upload/${eventData.event}`;
 
     const res = await fetch(url, {
         method: "POST",
         headers: {
             'content-type': 'application/json',
-            authorization: `Bearer ${localStorage.getItem('EventHive-token')}`,
+            authorization: `bearer ${localStorage.getItem('Eventhive-token')}`,
         },
         body: JSON.stringify(eventData),
        
@@ -95,7 +95,7 @@ export const makeMerchant = async user => {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('EventHive-token')}`,
+                authorization: `bearer ${localStorage.getItem('Eventhive-token')}`,
             },
             body: JSON.stringify({ role: 'merchant' }),
         }

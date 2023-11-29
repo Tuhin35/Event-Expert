@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { makeMerchant } from '../../Service Operations/manageusers'
+import { makeMerchant, uploadEvent } from '../../Service Operations/manageusers'
 import DetailsModal from '../Modal/DetailsModal'
 import { makeAdmin } from '../../Service Operations/Booking'
 import { toast } from 'react-toastify'
@@ -56,7 +56,9 @@ const UsersTableRow = ({ user }) => {
                                 Accept as merchant
                             </button>
                             :
-                            <button onClick={()=>handleMakeAdmin(_id)} className="py-1 px-2 rounded-full hover:text-white text-emerald-700 bg-gradient-to-tr from-emerald-200 to-cyan-300">
+                            <button onClick={()=>{handleMakeAdmin(_id)
+                              }}
+                               className="py-1 px-2 rounded-full hover:text-white text-emerald-700 bg-gradient-to-tr from-emerald-200 to-cyan-300">
                                 Make admin
                             </button>
 

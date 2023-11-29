@@ -5,7 +5,7 @@ export const BookService = async bookingsData => {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
-            authorization: `Bearer ${localStorage.getItem('EventHive-token')}`,
+            authorization: `bearer ${localStorage.getItem('Eventhive-token')}`,
         },
         body: JSON.stringify(bookingsData),
     })
@@ -20,7 +20,7 @@ export const makeAdmin = async id => {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('EventHive-token')}`
+                authorization: `bearer ${localStorage.getItem('Eventhive-token')}`
             },
             body: JSON.stringify({ role: 'admin' }),
 

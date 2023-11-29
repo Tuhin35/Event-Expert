@@ -16,7 +16,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Contexts/AuthProvider";
-import { getImageUrl, getPicturesUrl } from "../../../Service Operations/ImageUpload";
+import { getImageUrl } from "../../../Service Operations/ImageUpload";
 import {
   becomeMerchantRequest,
   getRole,
@@ -44,7 +44,7 @@ const BecomeMerchant = () => {
       const { address, businessCategory, agencyEmail, district, phoneNum, price, rating, agencyName, serviceCategory, pictures } = data;
   
      let collection = []
-      
+      console.log(businessCategory)
      for (let index = 0; index < pictures.length; index++) {
        const imageUrl = await getImageUrl(pictures[index]); 
        
@@ -81,74 +81,10 @@ const BecomeMerchant = () => {
               setLoading(false);
             }
         
-    //   if (Array.isArray(pictures)) {
-    //     for (let i = 0; i < pictures.length; i++) {
-    //       const imageUrl = await getPicturesUrl(pictures[i]);
-    //       imageUrls.push(imageUrl);
-    //     }
-  
-    //     const eventData = {
-    //       rating,
-    //       price,
-    //       category: serviceCategory,
-    //       event: businessCategory,
-    //       pictures: imageUrls,
-    //       agency: {
-    //         agencyName,
-    //         location: {
-    //           address,
-    //           district
-    //         },
-    //         contact: {
-    //           phone: phoneNum,
-    //           email: agencyEmail
-    //         }
-    //       }
-    //     };
-  
-    //     setLoading(true);
-  
-    //     const uploadResult = await uploadEvent(eventData);
-  
-    //     if (uploadResult.acknowledged) {
-    //       toast.success("Your data is uploaded");
-    //       setLoading(false);
-    //     }
-    //   } else {
-    //     // Handle single image upload
-    //     const imageUrl = await getPicturesUrl(pictures[0]);
-  
-    //     const eventData = {
-    //       rating,
-    //       price,
-    //       category: serviceCategory,
-    //       event: businessCategory,
-    //       pictures: [imageUrl],
-    //       agency: {
-    //         agencyName,
-    //         location: {
-    //           address,
-    //           district
-    //         },
-    //         contact: {
-    //           phone: phoneNum,
-    //           email: agencyEmail
-    //         }
-    //       }
-    //     };
-  
-    //     setLoading(true);
-  
-    //     const uploadResult = await uploadEvent(eventData);
-  
-    //     if (uploadResult.acknowledged) {
-    //       toast.success("Your data is uploaded");
-    //       setLoading(false);
-    //     }
-    //   }
+    
     } catch (error) {
       console.error('Error uploading event data:', error.message);
-      // Handle the error as needed (e.g., show a user-friendly message)
+     
     }
   };
   
@@ -158,28 +94,50 @@ const BecomeMerchant = () => {
 
 
 
-  const handleBecomeMerchant = (data) => {
-    const { NID, address, businessCategory, district, phoneNum } = data;
+  const handleBecomeMerchant = async(data) => {
+    const {NID , address, businessCategory, agencyEmail, district, phoneNum, price, rating, agencyName, serviceCategory, pictures } = data;
     const image = data.image[0];
     const formData = new FormData();
     console.log("formData",formData)
     formData.append("image", image);
-    getImageUrl(image).then((data) => {
+    getImageUrl(image).then( async (data) => {
       setLoading(true);
       console.log(data);
-      // console.log({ NID, address, businessCategory, district, phoneNum })
-
+     
+      let collection = []
+      console.log(businessCategory)
+     for (let index = 0; index < pictures.length; index++) {
+       const imageUrl = await getImageUrl(pictures[index]); 
+       
+        console.log(index)
+        collection.push(imageUrl)
+        console.log(collection)
+     }
       const merchantRequestData = {
         email: user.email,
         name: user?.displayName,
         image: user?.photoURL,
         role: "requested",
         merchantData: {
-          NID,
-          address,
-          businessCategory,
-          district,
-          phoneNum,
+           eventData:{
+            NID,
+            rating,
+            price,
+            category: serviceCategory,
+            event: businessCategory,
+            pictures:collection,
+            agency: {
+              agencyName,
+              location: {
+                address,
+                district
+              },
+              contact: {
+                phone: phoneNum,
+                email: agencyEmail
+              }
+            }
+          },
           lisenceImage: data,
         },
       };
@@ -193,6 +151,7 @@ const BecomeMerchant = () => {
           setLoading(false);
         }
       });
+      console.log(merchantRequestData);
     });
   };
   return (
@@ -205,7 +164,7 @@ const BecomeMerchant = () => {
         <div className="w-full max-w-md p-8 space-y-3 text-gray-800 rounded-xl bg-gray-50 shadow">
           <form
             className="space-y-6"
-            onSubmit={handleSubmit( uploadEventData)}
+            onSubmit={handleSubmit(handleBecomeMerchant)}
           >
             <div className="space-y-1 text-sm">
               <label
@@ -455,7 +414,12 @@ const BecomeMerchant = () => {
 
             <button
               type="submit"
-              className="block w-full p-3 text-center font-medium tracking-wide text-white transition duration-200 rounded shadow-md primary-gradient hover:bg-gray-200 hover:text-gray-700 focus:shadow-outline focus:outline-none"
+              className="block w-full p-3 text-center 
+              font-medium tracking-wide text-white
+               transition duration-200 rounded shadow-md 
+               primary-gradient hover:bg-gray-200 
+               hover:text-gray-700 focus:shadow-outline
+                focus:outline-none"
             >
               {loading ? <SmallSpinner /> : "Submit Request"}
             </button>
