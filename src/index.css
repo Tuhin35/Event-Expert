@@ -46,7 +46,7 @@ code {
   }
 
   .btn-primary {
-    @apply bg-gradient-to-tr from-black  to-indigo-400 flex items-center  font-bold tracking-wide text-black capitalize transition-all duration-300  py-4 px-10 text-center   lg:px-8 xl:px-10 hover:bg-gradient-to-tr hover:from-white hover:to-stone-600 hover:shadow-md rounded-md;
+    @apply bg-gradient-to-tr from-black  to-indigo-400 flex items-center  font-bold tracking-wide text-white capitalize transition-all duration-300  py-4 px-10 text-center   lg:px-8 xl:px-10 hover:bg-gradient-to-tr hover:from-white hover:text-black hover:to-stone-600 hover:shadow-md rounded-md;
   }
 
   .gradient-text {

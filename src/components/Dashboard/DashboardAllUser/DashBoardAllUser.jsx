@@ -42,7 +42,13 @@ const DashBoardAllUser = () => {
                   <p> {c.contact}</p>
                 </td>
                 <td className="">
-                  <button className="btn btn-primary text-center  mx-auto">Pay</button>
+                {
+          c?.price && c?.paid && <span
+            className='text-black  font-bold text-xxl'
+          >Paid</span>
+
+
+        }
                 </td>
               </tr>
             ))}

@@ -5,7 +5,7 @@ import AuthProvider from "../../Contexts/AuthProvider";
 
 const VenueService = () => {
   const [venue, setVenue] = useState([]);
-  const {user} = useContext(AuthProvider)
+  // const {user} = useContext(AuthProvider)
 
   useEffect(() => {
     window.scrollTo(0, 0);

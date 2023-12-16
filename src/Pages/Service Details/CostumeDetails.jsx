@@ -42,6 +42,7 @@ const CostumeDetails = () => {
       body: JSON.stringify({
         event,
         price,
+        
         email,
         name,
         agencyName,

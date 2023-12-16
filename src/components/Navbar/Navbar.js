@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import DayNightToggle from 'react-day-and-night-toggle';
 import { Link } from "react-router-dom";
+import logo from './logo.png'
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Contexts/AuthProvider";
 import { themeContext } from "../../Contexts/ThemeProvider";
@@ -55,10 +56,10 @@ export const Navbar = () => {
                     className="inline-flex items-center"
                 >
                     
-                        <img className="h-16 w-16 rounded" src="data:image/png;base64,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" alt="" />
+                        <img className="h-16 w-16 rounded" src={logo} alt="" />
                     
                     <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 dark:text-white-toned uppercase">
-                        Company
+                        Event-Expert
                     </span>
                 </a>
                 <ul className="flex items-center hidden space-x-8 lg:flex">
