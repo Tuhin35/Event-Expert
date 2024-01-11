@@ -11,8 +11,8 @@ export const Navbar = () => {
     const { isDark, toggleTheme } = useContext(themeContext);
     const { user, logout } = useContext(AuthContext);
     const [isScrolled, setIsScrolled] = useState(false);
-   const isAdmin = UseAdmin(user?.email)
-   
+    const isAdmin = UseAdmin(user?.email)
+
     const allLinks = [
         { url: '/', name: 'Home' },
         {
@@ -25,8 +25,8 @@ export const Navbar = () => {
         },
         { url: '/orders', name: 'Orders' },
         { url: '/contact', name: 'Contact' },
-      isAdmin[0] && { url: '/dashboard', name: 'Dashboard' },
-      ! isAdmin[0] && { url: '/become-merchant', name: 'Add Product' },
+        !isAdmin[0] && { url: '/become-merchant', name: 'Add Product' },
+        isAdmin[0] && { url: '/dashboard', name: 'Dashboard' },
     ]
 
 
@@ -55,9 +55,9 @@ export const Navbar = () => {
                     title="Company"
                     className="inline-flex items-center"
                 >
-                    
-                        <img className="h-16 w-16 rounded" src={logo} alt="" />
-                    
+
+                    <img className="h-16 w-16 rounded" src={logo} alt="" />
+
                     <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 dark:text-white-toned uppercase">
                         Event-Expert
                     </span>
@@ -142,23 +142,11 @@ export const Navbar = () => {
                                             title="Company"
                                             className="inline-flex items-center"
                                         >
-                                            <svg
-                                                className="w-8 text-deep-purple-accent-400"
-                                                viewBox="0 0 24 24"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeMiterlimit="10"
-                                                stroke="currentColor"
-                                                fill="none"
-                                            >
-                                                <rect x="3" y="1" width="7" height="12" />
-                                                <rect x="3" y="17" width="7" height="6" />
-                                                <rect x="14" y="1" width="7" height="6" />
-                                                <rect x="14" y="11" width="7" height="12" />
-                                            </svg>
-                                            <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                                                Company
+
+                                            <img className="h-16 w-16 rounded" src={logo} alt="" />
+
+                                            <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 dark:text-white-toned uppercase">
+                                                Event-Expert
                                             </span>
                                         </a>
                                     </div>
@@ -180,14 +168,35 @@ export const Navbar = () => {
                                 </div>
                                 <nav>
                                     <ul className="space-y-4">
-                                        <li>
-                                            <DayNightToggle
-                                                onChange={() => toggleTheme()}
-                                                checked={isDark}
-                                                size={20}
-                                                shadows={true}
+                                        <li className="flex flex-row items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-slate-800 transition duration-200 rounded  focus:shadow-outline focus:outline-none">
+                                            <li className="mx-auto">
+                                                <DayNightToggle
+                                                    onChange={() => toggleTheme()}
+                                                    checked={isDark}
+                                                    size={20}
+                                                    shadows={true}
 
-                                            />
+                                                />
+                                            </li>
+                                            <li className="mx-auto">
+                                                {
+                                                    user && user?.email ? <>
+                                                        <button onClick={logoutUser}><img src="https://cdn-icons-png.flaticon.com/512/8602/8602349.png" alt="" className="w-12" title="logout" /></button>
+                                                        <img className="inline-block mx-auto h-[2.875rem] w-[2.875rem] rounded-full ring-2 ring-white dark:ring-gray-800 object-cover" src={user?.photoURL} alt={user?.displayName}></img>
+                                                    </>
+                                                        :
+                                                        <li className="mx-auto">
+                                                            <Link
+                                                                to="/signup"
+                                                                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                                                                aria-label="Sign up"
+                                                                title="Sign up"
+                                                            >
+                                                                Sign up
+                                                            </Link>
+                                                        </li>
+                                                }
+                                            </li>
                                         </li>
                                         {
                                             allLinks.map((link, i) => (
@@ -204,6 +213,7 @@ export const Navbar = () => {
 
                                             ))
                                         }
+
 
                                     </ul>
                                 </nav>
