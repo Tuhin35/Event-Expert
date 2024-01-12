@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^3.12.1",
     "@headlessui/react": "^1.7.14",
     "@hookform/resolvers": "^3.1.0",
     "@stripe/react-stripe-js": "^2.4.0",

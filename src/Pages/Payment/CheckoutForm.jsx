@@ -14,7 +14,8 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import  { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 const CheckoutForm = ({ order }) => {
   console.log(order);
   const [cardError, setCardError] = useState();
@@ -103,12 +104,22 @@ const CheckoutForm = ({ order }) => {
         .then((data) => {
           setSuccess("congrats ! your payment completed");
           setTransactionId(paymentIntent.id);
+          
           navigate("/orders");
         });
     }
     setProcessing(false);
   };
+  const sendEmail = (e) => {
+    e.preventDefault();
 
+    emailjs.sendForm('service_8ss5p0j', 'template_ks8srhg',  'bSFXQ1qW4WoYJm7aH')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
   return (
     <>
       <form className="mx-auto" onSubmit={handleSubmit}>
@@ -132,6 +143,7 @@ const CheckoutForm = ({ order }) => {
           className="btn btn-sm mt-4 btn-primary"
           type="submit"
           disabled={!stripe || !clientSecret}
+          onSubmit={sendEmail}
         >
           Pay
         </button>
